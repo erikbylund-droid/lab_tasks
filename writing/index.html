@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing Task 1 — PET Part 1 Email · B1</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #faf9f7;
+      color: #333;
+      min-height: 100vh;
+    }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .instructions {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .instructions strong { color: #333; }
+    .student-info {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .student-info label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.35rem;
+    }
+    .student-info > label + select#studentClass { margin-bottom: 1rem; }
+    .name-controls { margin-bottom: 0; }
+    .name-controls input,
+    .name-controls select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid #e5e2df;
+      border-radius: 6px;
+    }
+    .name-controls input:focus,
+    .name-controls select:focus {
+      outline: none;
+      border-color: #999;
+    }
+    .name-field-hidden { display: none !important; }
+    .student-info > select#studentClass {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid #e5e2df;
+      border-radius: 6px;
+    }
+    .student-info > select#studentClass:focus {
+      outline: none;
+      border-color: #999;
+    }
+    .pet-task-block {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .pet-task-block > p:first-child { margin-top: 0; }
+    .pet-email-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #4a4a4a;
+      color: #fff;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.8rem;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.02em;
+      margin-top: 0.75rem;
+    }
+    .pet-email-meta {
+      font-size: 0.85rem;
+      margin: 0.5rem 0 0.35rem;
+    }
+    .pet-email-body {
+      border: 1px solid #222;
+      padding: 1rem 1.1rem;
+      background: #fff;
+      font-size: 0.9rem;
+    }
+    .pet-email-body p { margin: 0 0 0.85rem; }
+    .pet-email-body p:last-child { margin-bottom: 0; }
+    .pet-notes {
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px dashed #ccc;
+    }
+    .pet-notes p {
+      margin: 0 0 0.5rem;
+      font-style: italic;
+      font-family: 'Segoe Print', 'Bradley Hand', 'Apple Chancery', cursive;
+      font-size: 0.88rem;
+      color: #2c2c2c;
+    }
+    .pet-notes p:last-child { margin-bottom: 0; }
+    .pet-write-foot {
+      margin: 1rem 0 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .eval-focus {
+      margin: 1rem 0 0;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e2df;
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.55;
+    }
+    .word-count {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+    .word-count.in-range { color: #2d7a3e; }
+    .word-count.over {
+      color: #b71c1c;
+      font-weight: 600;
+    }
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 1rem;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      resize: vertical;
+      background: #fff;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #999;
+    }
+    .download-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .download-error {
+      color: #c73e3e;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .download-error.visible { display: block; }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #f0eeec; }
+    details.sample-task {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    details.sample-task summary {
+      list-style: none;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+    }
+    details.sample-task summary::-webkit-details-marker { display: none; }
+    details.sample-task summary::after {
+      content: ' \25BE';
+      color: #666;
+      font-weight: 400;
+    }
+    details.sample-task[open] summary::after { content: ' \25B4'; }
+    details.sample-task summary:hover { background: #f5f4f2; }
+    .sample-task-inner {
+      padding: 0 1rem 1rem;
+      border-top: 1px solid #e5e2df;
+    }
+    .sample-pet-image {
+      margin-bottom: 1rem;
+    }
+    .sample-pet-image img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+      border: 1px solid #e5e2df;
+    }
+    .sample-two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 560px) {
+      .sample-two-col { grid-template-columns: 1fr 1fr; }
+    }
+    .sample-answer {
+      background: #f5f4f2;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #444;
+    }
+    .sample-answer h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #555;
+      margin: 0 0 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .sample-answer p { margin: 0 0 0.65rem; }
+    .sample-answer p:last-child { margin-bottom: 0; }
+    .sample-rationale {
+      background: #f5f4f2;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #444;
+    }
+    .sample-rationale h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin: 0 0 0.5rem;
+    }
+    .sample-rationale ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .sample-rationale li { margin-bottom: 0.45rem; }
+    .dict-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e2df;
+    }
+    .dict-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .dict-note {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .dict-note a.dict-link-main {
+      display: inline-block;
+      margin-top: 0.35rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      color: #2d7a3e;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .dict-note a.dict-link-main:hover { background: #f0eeec; }
+    .dict-note .dict-link-secondary {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .dict-note .dict-link-secondary a { color: #2d7a3e; }
+  </style>
+</head>
+<body>
+  <h1>Writing Task 1 — PET Part 1 Email</h1>
+  <p class="subtitle">B1 level · answer an informal email</p>
+
+  <section class="student-info">
+    <label for="studentClass">Class</label>
+    <select id="studentClass" name="studentClass">
+      <option value="">Select your class</option>
+      <option value="9thA">9thA</option>
+      <option value="9thB">9thB</option>
+      <option value="9thC">9thC</option>
+    </select>
+
+    <label for="studentName" id="nameLabel">Your name</label>
+    <div class="name-controls">
+      <input type="text" id="studentName" name="studentName" placeholder="Full name" autocomplete="name">
+      <select id="studentNameList" name="studentNameList" class="name-field-hidden" aria-label="Your name"></select>
+    </div>
+  </section>
+
+  <details class="sample-task">
+    <summary>Sample of a Writing Task (model answer)</summary>
+    <div class="sample-task-inner">
+      <div class="sample-pet-image">
+        <img src="PET-Writing-Part-1-sample.png" alt="PET Writing Part 1: Katy’s camping email with handwritten notes and John’s sample answer.">
+      </div>
+      <p style="font-size: 0.85rem; color: #666; margin: 0 0 1rem; line-height: 1.5;">The image shows the exam-style task (left) and the printed model answer (right). The same reply is given in text below for accessibility.</p>
+      <div class="sample-two-col">
+        <div class="sample-answer">
+          <h3>Sample answer (text)</h3>
+          <p>Hi Katy,</p>
+          <p>I was so happy to get your email. I'm really excited about our camping trip with your family. Thanks for inviting me!</p>
+          <p>I've never tried rafting or rock climbing before. It sounds very scary! I'd like to do some activities that are less dangerous like hiking or swimming. Is that ok?</p>
+          <p>The idea of having big meals together in the evenings sounds fantastic. I absolutely love burgers and barbeque!</p>
+          <p>I have an idea for something special during the trip. Let's do a campfire at night with marshmallows and stories. What do you think?</p>
+          <p>I hope to hear from you soon!<br>Take care,<br>John</p>
+        </div>
+        <div class="sample-rationale">
+          <h3>Why this is a strong answer</h3>
+          <ul>
+            <li><strong>Content:</strong> It follows all four notes — thanks Katy, reacts to adventure sports with a polite “no, but…” and alternatives, shows enthusiasm for the food, and suggests something special (the campfire).</li>
+            <li><strong>Tone:</strong> Informal and warm (“Hi Katy”, “Thanks for inviting me!”), right for a friend.</li>
+            <li><strong>Organisation:</strong> Logical paragraphs, clear opening and closing, questions where appropriate.</li>
+            <li><strong>Language:</strong> Natural B1 linking and vocabulary (“sounds fantastic”, “I'd like to”, “What do you think?”) with mostly accurate grammar. (The original exam sheet had “It sound”; “It sounds” is the standard form.)</li>
+            <li><strong>Length:</strong> Fits the kind of length expected for a 100–140 word Part 1 email.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <div class="instructions">
+    <strong>100–140 words</strong><br>
+    Email (PET Part 1): Read your friend’s email and the notes you have made. Write a reply covering <strong>all four points</strong> in an informal email.
+  </div>
+
+  <div class="pet-task-block">
+    <p>Read this email from your English-speaking friend <strong>Sam</strong> and the notes you have made.</p>
+
+    <div class="pet-email-bar">&#9993; EMAIL</div>
+    <p class="pet-email-meta"><strong>From:</strong> Sam<br><strong>Subject:</strong> Saturday bike ride</p>
+
+    <div class="pet-email-body">
+      <p>Hi,</p>
+      <p>I'm really glad you said you'd come on our bike ride this Saturday! We're meeting at the park at 10 a.m. and then cycling to the lake for a picnic.</p>
+      <p>My mum is making sandwiches for everyone. Do you eat meat, or would you prefer a vegetarian option?</p>
+      <p>I heard you might want to bring your cousin along — is that still the plan?</p>
+      <p>One last thing: could you bring a few ideas for our portable speaker? Do you have a playlist in mind?</p>
+      <p>See you soon!<br>Sam</p>
+    </div>
+
+    <div class="pet-notes">
+      <p>Thank Sam</p>
+      <p>Say you don’t eat meat</p>
+      <p>Say you’re happy your cousin can come</p>
+      <p>Suggest a kind of music (or artists)</p>
+    </div>
+
+    <p class="pet-write-foot">Write your email to Sam using <strong>all the notes</strong>.</p>
+
+    <p class="eval-focus"><strong>What we look for when we mark your email:</strong> In B1 Preliminary Writing Part 1, examiners assess <strong>content</strong> (you answer the task and cover every point the notes ask for), <strong>communicative achievement</strong> (the tone fits an informal email to a friend; the reader would get the message clearly), <strong>organisation</strong> (logical paragraphs, greetings and closings, cohesive devices), and <strong>language</strong> (range and control of grammar and vocabulary appropriate to B1). Stay within the word limit.</p>
+  </div>
+
+  <p class="word-count" id="wordCount">0 words</p>
+  <textarea id="textArea" placeholder="Write your email here..."></textarea>
+  <div class="download-row">
+    <button id="downloadBtn" type="button">Download as Word / Google Doc (.docx)</button>
+    <p class="download-error" id="downloadError" role="alert"></p>
+  </div>
+
+  <section class="dict-section">
+    <h2>Dictionary — WordReference</h2>
+    <p class="dict-note">
+      Open the Spanish–English translator in a new tab to look up words while you write.<br>
+      <a class="dict-link-main" href="https://www.wordreference.com/es/en/translation.asp" target="_blank" rel="noopener noreferrer">WordReference: Spanish ↔ English</a>
+      <span class="dict-link-secondary">All languages: <a href="https://www.wordreference.com/" target="_blank" rel="noopener noreferrer">wordreference.com</a></span>
+    </p>
+  </section>
+
+  <script>
+    const textArea = document.getElementById('textArea');
+    const wordCountEl = document.getElementById('wordCount');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadError = document.getElementById('downloadError');
+    const studentNameInput = document.getElementById('studentName');
+    const studentNameList = document.getElementById('studentNameList');
+    const studentClassSelect = document.getElementById('studentClass');
+    const nameLabel = document.getElementById('nameLabel');
+
+    const STUDENTS_9A = [
+      'Acevedo Ponce Felipe Ademar',
+      'Aguilar Becerra Antonia',
+      'Alarcón Quiroz Andrés Felipe',
+      'Alvarado Ortiz Isidora Pilar',
+      'Castillo Turres Catalina Sofía',
+      'Cavieres Pasmiño Eloísa Mercedes',
+      'Centonzio Calderón Emily Raffaella',
+      'Contreras San Martín Eva Ignacia',
+      'Figueroa González María Consuelo',
+      'Fuenzalida Parra Pedro',
+      'Galdames Durán Francisca Antonia',
+      'Gatica Knaak Vicente Ignacio',
+      'González Encina Santiago Vicente',
+      'Inzunza Cifuentes Nicolás Guillermo',
+      'Mouat Aburto Martina Paz',
+      'Orellana Beltrán Monserrat Francisca',
+      'Ortiz Donoso Matilda Florencia',
+      'Pfeng Gaspar Laura Amalia',
+      'Pinochet Pinochet Alonso Eduardo',
+      'Pinto Bastías Inti Benjamín',
+      'Pizarro Paredes Sofía Ignacia',
+      'Plaza Pereira Martín Alejandro',
+      'Ponce Melero Francisca Ignacia',
+      'Quinteros Mondiglio Raimundo Patricio',
+      'Ramírez Bravo Francisco',
+      'Ramírez Palacios Daniel Esteban',
+      'Rivera Tudela Ignacio Alonso',
+      'Riveros Reveco Amanda',
+      'Rojas Albornoz Benjamin Alejandro',
+      'Rubio Núñez Leonardo Alonso',
+      'Soto Neira Amancay Rocío',
+      'Valdés Velásquez Max Alejandro',
+      'Valencia Zuzunaga Dhiamet Stefan',
+      'Vergara Montenegro Rafaela Sofía',
+      'Vergara Rojas Sofía María Susana',
+      'Vides Correa Maria Paz',
+      'Zapata Arancibia Agustín Andrés'
+    ];
+
+    const STUDENTS_9B = [
+      'Alarcón Vielma Maximiliano',
+      'Amigo Piceros Amaro Jesús',
+      'Aravena Albornoz Carlos Arturo',
+      'Barrera Jaque Santiago Ernesto',
+      'Carrasco Lazo Emilia Ignacia',
+      'Cornejo Cáceres Laura Elena',
+      'Eyzaguirre Silva Josefa Ignacia',
+      'Farías Andrade Arturo Daniel',
+      'Fonseca Chong Matilda Isidora',
+      'Fredes Silva Martina Sofía',
+      'García Ávila Rafaela Amparo',
+      'García Isla Cristóbal',
+      'Henríquez Miranda Matías Francisco',
+      'Leal Guzmán Álvaro Fernando',
+      'Luengo Valencia Lucas Fabián',
+      'Méndez Sáez Catalina Ignacia',
+      'Mora Palma Victoria Alejandra',
+      'Nilo Miranda Rosario',
+      'Ojeda Vera Joaquín Ignacio',
+      'Olea Solís Eloísa Antonia',
+      'Olivares Fincheira Guillermo Tomás',
+      'Padilla Burchard Felipe Ignacio',
+      'Páez Hidalgo Montserrat Ignacia',
+      'Palacios Solari Javier Agustín',
+      'Quiroz Peña Agustina',
+      'Riveros Álvarez Diego Arturo',
+      'Rojas Edmonds Florencia Antonia Angélica',
+      'San Martín Arias Magdalena Esperanza',
+      'Sánchez Moraga Cristóbal Arturo',
+      'Sarria Astudillo Esteban Alonso',
+      'Stager Aguilera Francisca Emilia',
+      'Valdenegro Román Vicente Maximiliano',
+      'Valderas Ortega Facundo Nicanor',
+      'Valenzuela González José Tomás',
+      'Vermeer Gutiérrez Anouk',
+      'Villagra Alarcón Sofía Antonieta'
+    ];
+
+    const STUDENTS_9C = [
+      'Aburto Romero Diego Esteban',
+      'Araya Escalona María Jesús',
+      'Bravo Zapata Isidora Francisca',
+      'Cáceres Arredondo Isidora Montserrat',
+      'Castillo Reichhardt Valentín',
+      'Espinosa Bravo Carlos Joaquín',
+      'Espinoza Ojeda Camila Ignacia',
+      'Evert Quinteros Alisson Fernanda',
+      'González Marzán Mateo Alfredo',
+      'Hernández Martínez Francisco Javier',
+      'Hiplan Godoy Santino Luis',
+      'Lagos Urra Leticia Carolina',
+      'Leal Rubio Isidora Ignacia',
+      'Montenegro Ramos Ignacio',
+      'Moya Madero Joaquín Esteban',
+      'Navarro Bravo Amanda Sofía',
+      'Osorio Vivar Víctor André',
+      'Pavez Véliz Clemente',
+      'Pinto Celis Martín Ignacio',
+      'Poblete Espinoza Florencia Antonia',
+      'Prieto Alarcón Mayte Antonia',
+      'Ramírez Ávila Abril Lucia',
+      'Reveco Rojas Ignacia',
+      'Riffo Fernández Agustín Alonso',
+      'Salazar Quiroga Simón Ismael',
+      'Salinas Gómez Isidora Agustina',
+      'Sandoval Acevedo Javiera Ignacia',
+      'Schüller Vásquez Santiago Ernesto',
+      'Seccia Orellana Ignacio Agustín',
+      'Seisdedos Carvajal Loreto Paz',
+      'Solorzano Torres Mateo Gaspar',
+      'Valdés Oyarzún Moira Carolina Denisse',
+      'Veliz Joo Consuelo Alejandra',
+      'Villena Arriagada Javiera Paz',
+      'Zegers Silva Amelia',
+      'Zurita Bustos Franco Salvador'
+    ];
+
+    const CLASS_ROSTERS = Object.freeze({
+      '9thA': STUDENTS_9A,
+      '9thB': STUDENTS_9B,
+      '9thC': STUDENTS_9C
+    });
+
+    function fillNameList(names) {
+      const sel = studentNameList;
+      sel.innerHTML = '<option value="">Select your name</option>';
+      names.forEach((name, i) => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = `${i + 1}\t${name}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function syncNameFieldVisibility() {
+      const cls = studentClassSelect.value;
+      const roster = CLASS_ROSTERS[cls];
+      if (roster) {
+        fillNameList(roster);
+        studentNameInput.classList.add('name-field-hidden');
+        studentNameList.classList.remove('name-field-hidden');
+        nameLabel.setAttribute('for', 'studentNameList');
+      } else {
+        studentNameList.classList.add('name-field-hidden');
+        studentNameInput.classList.remove('name-field-hidden');
+        nameLabel.setAttribute('for', 'studentName');
+        studentNameList.selectedIndex = 0;
+      }
+    }
+
+    function getStudentName() {
+      const cls = studentClassSelect.value;
+      if (CLASS_ROSTERS[cls]) {
+        return studentNameList.value.trim();
+      }
+      return studentNameInput.value.trim();
+    }
+
+    function sanitizeFilenamePart(str) {
+      return str
+        .trim()
+        .replace(/[\u2013\u2014]/g, '-')
+        .replace(/[/\\:*?"<>|]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    const TASK_EXERCISE_NAME = 'Writing Task 1 — PET Part 1 Email';
+    const TASK_FILENAME = sanitizeFilenamePart(TASK_EXERCISE_NAME);
+
+    function hideDownloadError() {
+      downloadError.classList.remove('visible');
+      downloadError.textContent = '';
+    }
+
+    studentNameInput.addEventListener('input', hideDownloadError);
+    studentNameList.addEventListener('change', hideDownloadError);
+    studentClassSelect.addEventListener('change', () => {
+      hideDownloadError();
+      syncNameFieldVisibility();
+    });
+    syncNameFieldVisibility();
+
+    function countWords(text) {
+      return text.trim() ? text.trim().split(/\s+/).filter(Boolean).length : 0;
+    }
+
+    function updateWordCount() {
+      const count = countWords(textArea.value);
+      wordCountEl.textContent = `${count} word${count !== 1 ? 's' : ''}`;
+      wordCountEl.classList.remove('in-range', 'over');
+      if (count > 140) {
+        wordCountEl.classList.add('over');
+      } else if (count >= 100 && count <= 140) {
+        wordCountEl.classList.add('in-range');
+      }
+    }
+
+    textArea.addEventListener('input', updateWordCount);
+    updateWordCount();
+
+    downloadBtn.addEventListener('click', async () => {
+      hideDownloadError();
+
+      const rawName = getStudentName();
+      if (!rawName) {
+        downloadError.textContent = CLASS_ROSTERS[studentClassSelect.value]
+          ? 'Please select your name before downloading.'
+          : 'Please enter your name before downloading.';
+        downloadError.classList.add('visible');
+        return;
+      }
+
+      const cls = studentClassSelect.value;
+      if (!cls) {
+        downloadError.textContent = 'Please select your class before downloading.';
+        downloadError.classList.add('visible');
+        return;
+      }
+
+      const namePart = sanitizeFilenamePart(rawName) || 'Student';
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const filename = `${namePart}-${cls}-${TASK_FILENAME}-${dateStr}.docx`;
+
+      try {
+        const { Document, Packer, Paragraph, TextRun } = await import('https://esm.sh/docx@8.5.0');
+        const text = textArea.value || ' ';
+        const lines = text.split(/\n/);
+        const children = lines.map(line =>
+          new Paragraph({
+            children: [new TextRun({ text: line || ' ' })],
+            spacing: { after: 200 }
+          })
+        );
+        if (children.length === 0) {
+          children.push(new Paragraph({ children: [new TextRun({ text: ' ' })] }));
+        }
+        const doc = new Document({
+          sections: [{ properties: {}, children }]
+        });
+        const blob = await Packer.toBlob(doc);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (err) {
+        alert('Download failed. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
