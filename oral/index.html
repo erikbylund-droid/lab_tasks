@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oral Task 1 — Photo Description · B1</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #faf9f7;
+      color: #333;
+      min-height: 100vh;
+    }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+    .photo-section {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .photo-section img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+    .photo-instructions {
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    .eval-focus {
+      margin: 1rem 0 0;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e2df;
+      font-size: 0.88rem;
+      color: #444;
+    }
+    .recorder { margin-bottom: 2rem; }
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #f0eeec; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.record { background: #c73e3e; color: #fff; border-color: #c73e3e; }
+    button.record:hover { background: #a33333; }
+    button.record.recording { background: #333; }
+    .status { font-size: 0.85rem; color: #666; margin-bottom: 0.5rem; }
+    .download-section { margin-top: 1.5rem; }
+    .student-info {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .student-info label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.35rem;
+    }
+    .student-info > label + select#studentClass { margin-bottom: 1rem; }
+    .name-controls { margin-bottom: 0; }
+    .name-controls input,
+    .name-controls select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid #e5e2df;
+      border-radius: 6px;
+    }
+    .name-controls input:focus,
+    .name-controls select:focus {
+      outline: none;
+      border-color: #999;
+    }
+    .name-field-hidden { display: none !important; }
+    .student-info > select#studentClass {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid #e5e2df;
+      border-radius: 6px;
+    }
+    .student-info > select#studentClass:focus {
+      outline: none;
+      border-color: #999;
+    }
+    .download-error {
+      color: #c73e3e;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .download-error.visible { display: block; }
+    details.sample-task {
+      background: #fff;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    details.sample-task summary {
+      list-style: none;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+    }
+    details.sample-task summary::-webkit-details-marker { display: none; }
+    details.sample-task summary::after {
+      content: ' ▾';
+      color: #666;
+      font-weight: 400;
+    }
+    details.sample-task[open] summary::after { content: ' ▴'; }
+    details.sample-task summary:hover { background: #f5f4f2; }
+    .sample-task-inner {
+      padding: 0 1rem 1rem;
+      border-top: 1px solid #e5e2df;
+    }
+    .sample-task-inner .photo-section {
+      margin-bottom: 1rem;
+    }
+    .sample-answer {
+      background: #f5f4f2;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #444;
+    }
+    .sample-answer h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin: 0 0 0.75rem;
+    }
+    .sample-answer p { margin: 0; }
+    .sample-rationale {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e2df;
+    }
+    .sample-rationale h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin: 0 0 0.5rem;
+    }
+    .sample-rationale ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #444;
+    }
+    .sample-rationale li { margin-bottom: 0.5rem; }
+    .sample-rationale li:last-child { margin-bottom: 0; }
+    .drive-embed {
+      margin-bottom: 1.5rem;
+      border: 1px solid #e5e2df;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .drive-embed iframe {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      border: 0;
+      margin: 0 auto;
+    }
+    .sample-answer .drive-embed {
+      margin: 0 0 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Oral Task 1 — Photo Description</h1>
+  <p class="subtitle">B1 level · PET Part 2 style</p>
+
+  <section class="student-info">
+    <label for="studentClass">Class</label>
+    <select id="studentClass" name="studentClass">
+      <option value="">Select your class</option>
+      <option value="9thA">9thA</option>
+      <option value="9thB">9thB</option>
+      <option value="9thC">9thC</option>
+    </select>
+
+    <label for="studentName" id="nameLabel">Your name</label>
+    <div class="name-controls">
+      <input type="text" id="studentName" name="studentName" placeholder="Full name" autocomplete="name">
+      <select id="studentNameList" name="studentNameList" class="name-field-hidden" aria-label="Your name"></select>
+    </div>
+  </section>
+
+  <details class="sample-task">
+    <summary>Sample of an Oral Task</summary>
+    <div class="sample-task-inner">
+      <section class="photo-section">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600" alt="People relaxing on a sunny beach">
+        <div class="photo-instructions">
+          <strong>Task:</strong> Describe this photo fully. Include:
+          <ul style="margin: 0.5rem 0 0 1rem;">
+            <li><strong>Place:</strong> Where is it? What kind of place?</li>
+            <li><strong>People:</strong> Who can you see? What are they doing?</li>
+            <li><strong>Actions:</strong> What is happening?</li>
+            <li><strong>Atmosphere:</strong> How does it feel? (e.g. relaxed, busy)</li>
+          </ul>
+          <p style="margin: 0.75rem 0 0;">Speak for about 1 minute.</p>
+        </div>
+      </section>
+      <div class="sample-answer">
+        <div class="drive-embed">
+          <iframe src="https://drive.google.com/file/d/1tvPLtu_juhWR0LjN7Q6hxlq9heqnfRfL/preview" width="600" height="400" title="Google Drive resource" loading="lazy" allow="autoplay; fullscreen"></iframe>
+        </div>
+        <h3>Sample answer (model response)</h3>
+        <p>In this picture I can see a beach on a sunny day. The place looks like a popular seaside resort because there is a lot of sand and the sea is in the background, with quite big waves.</p>
+        <p style="margin-top: 0.75rem;">There are several people in the photo. In the foreground I can see a family or a group of friends walking along the shore, and there are children as well. Some people seem to be enjoying the water or standing near the edge of the sea.</p>
+        <p style="margin-top: 0.75rem;">What is happening is that everyone is relaxing and spending time outdoors. Some are probably playing or chatting, and others are just taking a walk. It looks like a typical summer day at the beach.</p>
+        <p style="margin-top: 0.75rem;">The atmosphere is very calm and pleasant. It feels peaceful and happy — like a holiday — and the bright sky makes the scene look really inviting. Overall, it is a positive and relaxed situation.</p>
+        <div class="sample-rationale">
+          <h3>Why this answer aims for the highest band</h3>
+          <ul>
+            <li><strong>Task:</strong> It answers every part of the prompt — place, people, actions, and atmosphere — so the examiner can tick all the boxes for a full response.</li>
+            <li><strong>Place:</strong> It says what kind of location it is (beach, seaside), adds detail (sand, sea, waves) and uses language of speculation where needed (“looks like a popular resort”).</li>
+            <li><strong>People:</strong> It distinguishes foreground and background ideas, mentions different groups (family or friends, children) and avoids repeating only “some people.”</li>
+            <li><strong>Actions:</strong> It describes what is going on (walking, enjoying the water, relaxing) and uses hedging (“seem to,” “probably”) appropriately for a photo you are interpreting.</li>
+            <li><strong>Atmosphere:</strong> It names feelings (calm, peaceful, happy) and explains them with reference to the scene (bright sky, holiday feeling), ending with a clear summary (“positive and relaxed”).</li>
+            <li><strong>Organisation:</strong> Each paragraph matches one main idea, with logical order and simple connectors (“in the foreground,” “overall”), which is easy to follow in a one-minute turn.</li>
+            <li><strong>Language:</strong> It uses B1–B2 range (e.g. “in the background,” “typical,” “inviting”) and a mix of present tenses and natural phrases for description, with generally accurate grammar.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <section class="photo-section">
+    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600" alt="People in a café">
+    <div class="photo-instructions">
+      <strong>Task:</strong> Describe this photo fully. Include:
+      <ul style="margin: 0.5rem 0 0 1rem;">
+        <li><strong>Place:</strong> Where is it? What kind of place?</li>
+        <li><strong>People:</strong> Who can you see? What are they doing?</li>
+        <li><strong>Actions:</strong> What is happening?</li>
+        <li><strong>Atmosphere:</strong> How does it feel? (e.g. relaxed, busy)</li>
+      </ul>
+      <p style="margin: 0.75rem 0 0;">Speak for about 1 minute.</p>
+      <p class="eval-focus"><strong>What we listen for:</strong> how fully and clearly you describe the picture, how you organise your ideas, your range and accuracy of grammar and vocabulary, and your pronunciation.</p>
+    </div>
+  </section>
+
+  <section class="recorder">
+    <p class="status" id="status">Click Record to start.</p>
+    <div class="controls">
+      <button id="recordBtn" class="record">Record</button>
+      <button id="pauseBtn" disabled>Pause</button>
+      <button id="resumeBtn" disabled>Resume</button>
+      <button id="stopBtn" disabled>Stop</button>
+      <button id="playBtn" disabled>Play</button>
+      <button id="pausePlayBtn" disabled>Pause Playback</button>
+    </div>
+
+    <div class="download-section" id="downloadSection" style="display: none;">
+      <p class="status">Recording ready. Download as WAV:</p>
+      <button id="downloadBtn">Download</button>
+      <p class="download-error" id="downloadError" role="alert"></p>
+    </div>
+  </section>
+
+  <script>
+    const status = document.getElementById('status');
+    const recordBtn = document.getElementById('recordBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const playBtn = document.getElementById('playBtn');
+    const pausePlayBtn = document.getElementById('pausePlayBtn');
+    const downloadSection = document.getElementById('downloadSection');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const studentNameInput = document.getElementById('studentName');
+    const studentNameList = document.getElementById('studentNameList');
+    const studentClassSelect = document.getElementById('studentClass');
+    const nameLabel = document.getElementById('nameLabel');
+    const downloadError = document.getElementById('downloadError');
+
+    const STUDENTS_9A = [
+      'Acevedo Ponce Felipe Ademar',
+      'Aguilar Becerra Antonia',
+      'Alarcón Quiroz Andrés Felipe',
+      'Alvarado Ortiz Isidora Pilar',
+      'Castillo Turres Catalina Sofía',
+      'Cavieres Pasmiño Eloísa Mercedes',
+      'Centonzio Calderón Emily Raffaella',
+      'Contreras San Martín Eva Ignacia',
+      'Figueroa González María Consuelo',
+      'Fuenzalida Parra Pedro',
+      'Galdames Durán Francisca Antonia',
+      'Gatica Knaak Vicente Ignacio',
+      'González Encina Santiago Vicente',
+      'Inzunza Cifuentes Nicolás Guillermo',
+      'Mouat Aburto Martina Paz',
+      'Orellana Beltrán Monserrat Francisca',
+      'Ortiz Donoso Matilda Florencia',
+      'Pfeng Gaspar Laura Amalia',
+      'Pinochet Pinochet Alonso Eduardo',
+      'Pinto Bastías Inti Benjamín',
+      'Pizarro Paredes Sofía Ignacia',
+      'Plaza Pereira Martín Alejandro',
+      'Ponce Melero Francisca Ignacia',
+      'Quinteros Mondiglio Raimundo Patricio',
+      'Ramírez Bravo Francisco',
+      'Ramírez Palacios Daniel Esteban',
+      'Rivera Tudela Ignacio Alonso',
+      'Riveros Reveco Amanda',
+      'Rojas Albornoz Benjamin Alejandro',
+      'Rubio Núñez Leonardo Alonso',
+      'Soto Neira Amancay Rocío',
+      'Valdés Velásquez Max Alejandro',
+      'Valencia Zuzunaga Dhiamet Stefan',
+      'Vergara Montenegro Rafaela Sofía',
+      'Vergara Rojas Sofía María Susana',
+      'Vides Correa Maria Paz',
+      'Zapata Arancibia Agustín Andrés'
+    ];
+
+    const STUDENTS_9B = [
+      'Alarcón Vielma Maximiliano',
+      'Amigo Piceros Amaro Jesús',
+      'Aravena Albornoz Carlos Arturo',
+      'Barrera Jaque Santiago Ernesto',
+      'Carrasco Lazo Emilia Ignacia',
+      'Cornejo Cáceres Laura Elena',
+      'Eyzaguirre Silva Josefa Ignacia',
+      'Farías Andrade Arturo Daniel',
+      'Fonseca Chong Matilda Isidora',
+      'Fredes Silva Martina Sofía',
+      'García Ávila Rafaela Amparo',
+      'García Isla Cristóbal',
+      'Henríquez Miranda Matías Francisco',
+      'Leal Guzmán Álvaro Fernando',
+      'Luengo Valencia Lucas Fabián',
+      'Méndez Sáez Catalina Ignacia',
+      'Mora Palma Victoria Alejandra',
+      'Nilo Miranda Rosario',
+      'Ojeda Vera Joaquín Ignacio',
+      'Olea Solís Eloísa Antonia',
+      'Olivares Fincheira Guillermo Tomás',
+      'Padilla Burchard Felipe Ignacio',
+      'Páez Hidalgo Montserrat Ignacia',
+      'Palacios Solari Javier Agustín',
+      'Quiroz Peña Agustina',
+      'Riveros Álvarez Diego Arturo',
+      'Rojas Edmonds Florencia Antonia Angélica',
+      'San Martín Arias Magdalena Esperanza',
+      'Sánchez Moraga Cristóbal Arturo',
+      'Sarria Astudillo Esteban Alonso',
+      'Stager Aguilera Francisca Emilia',
+      'Valdenegro Román Vicente Maximiliano',
+      'Valderas Ortega Facundo Nicanor',
+      'Valenzuela González José Tomás',
+      'Vermeer Gutiérrez Anouk',
+      'Villagra Alarcón Sofía Antonieta'
+    ];
+
+    const STUDENTS_9C = [
+      'Aburto Romero Diego Esteban',
+      'Araya Escalona María Jesús',
+      'Bravo Zapata Isidora Francisca',
+      'Cáceres Arredondo Isidora Montserrat',
+      'Castillo Reichhardt Valentín',
+      'Espinosa Bravo Carlos Joaquín',
+      'Espinoza Ojeda Camila Ignacia',
+      'Evert Quinteros Alisson Fernanda',
+      'González Marzán Mateo Alfredo',
+      'Hernández Martínez Francisco Javier',
+      'Hiplan Godoy Santino Luis',
+      'Lagos Urra Leticia Carolina',
+      'Leal Rubio Isidora Ignacia',
+      'Montenegro Ramos Ignacio',
+      'Moya Madero Joaquín Esteban',
+      'Navarro Bravo Amanda Sofía',
+      'Osorio Vivar Víctor André',
+      'Pavez Véliz Clemente',
+      'Pinto Celis Martín Ignacio',
+      'Poblete Espinoza Florencia Antonia',
+      'Prieto Alarcón Mayte Antonia',
+      'Ramírez Ávila Abril Lucia',
+      'Reveco Rojas Ignacia',
+      'Riffo Fernández Agustín Alonso',
+      'Salazar Quiroga Simón Ismael',
+      'Salinas Gómez Isidora Agustina',
+      'Sandoval Acevedo Javiera Ignacia',
+      'Schüller Vásquez Santiago Ernesto',
+      'Seccia Orellana Ignacio Agustín',
+      'Seisdedos Carvajal Loreto Paz',
+      'Solorzano Torres Mateo Gaspar',
+      'Valdés Oyarzún Moira Carolina Denisse',
+      'Veliz Joo Consuelo Alejandra',
+      'Villena Arriagada Javiera Paz',
+      'Zegers Silva Amelia',
+      'Zurita Bustos Franco Salvador'
+    ];
+
+    const CLASS_ROSTERS = Object.freeze({
+      '9thA': STUDENTS_9A,
+      '9thB': STUDENTS_9B,
+      '9thC': STUDENTS_9C
+    });
+
+    function fillNameList(names) {
+      const sel = studentNameList;
+      sel.innerHTML = '<option value="">Select your name</option>';
+      names.forEach((name, i) => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = `${i + 1}\t${name}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function syncNameFieldVisibility() {
+      const cls = studentClassSelect.value;
+      const roster = CLASS_ROSTERS[cls];
+      if (roster) {
+        fillNameList(roster);
+        studentNameInput.classList.add('name-field-hidden');
+        studentNameList.classList.remove('name-field-hidden');
+        nameLabel.setAttribute('for', 'studentNameList');
+      } else {
+        studentNameList.classList.add('name-field-hidden');
+        studentNameInput.classList.remove('name-field-hidden');
+        nameLabel.setAttribute('for', 'studentName');
+        studentNameList.selectedIndex = 0;
+      }
+    }
+
+    function getStudentName() {
+      const cls = studentClassSelect.value;
+      if (CLASS_ROSTERS[cls]) {
+        return studentNameList.value.trim();
+      }
+      return studentNameInput.value.trim();
+    }
+
+    function sanitizeFilenamePart(str) {
+      return str
+        .trim()
+        .replace(/[\u2013\u2014]/g, '-')
+        .replace(/[/\\:*?"<>|]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    const TASK_EXERCISE_NAME = 'Oral Task 1 — Photo Description';
+    const TASK_FILENAME = sanitizeFilenamePart(TASK_EXERCISE_NAME);
+
+    function hideDownloadError() {
+      downloadError.classList.remove('visible');
+      downloadError.textContent = '';
+    }
+
+    studentNameInput.addEventListener('input', hideDownloadError);
+    studentNameList.addEventListener('change', hideDownloadError);
+    studentClassSelect.addEventListener('change', () => {
+      hideDownloadError();
+      syncNameFieldVisibility();
+    });
+    syncNameFieldVisibility();
+
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let audioBlob = null;
+
+    recordBtn.onclick = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(t => t.stop());
+          audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          downloadSection.style.display = 'block';
+          status.textContent = 'Recording stopped. You can play or download.';
+          recordBtn.disabled = false;
+          recordBtn.classList.remove('recording');
+        };
+
+        mediaRecorder.start();
+        recordBtn.disabled = true;
+        pauseBtn.disabled = false;
+        stopBtn.disabled = false;
+        recordBtn.classList.add('recording');
+        status.textContent = 'Recording...';
+      } catch (e) {
+        status.textContent = 'Error: Could not access microphone.';
+      }
+    };
+
+    pauseBtn.onclick = () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.pause();
+        pauseBtn.disabled = true;
+        resumeBtn.disabled = false;
+        status.textContent = 'Paused.';
+      }
+    };
+
+    resumeBtn.onclick = () => {
+      if (mediaRecorder && mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        pauseBtn.disabled = false;
+        resumeBtn.disabled = true;
+        status.textContent = 'Recording...';
+      }
+    };
+
+    stopBtn.onclick = () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        pauseBtn.disabled = resumeBtn.disabled = stopBtn.disabled = true;
+        playBtn.disabled = false;
+      }
+    };
+
+    playBtn.onclick = async () => {
+      if (!audioBlob) return;
+      const url = URL.createObjectURL(audioBlob);
+      const audio = new Audio(url);
+      audio.onended = () => {
+        URL.revokeObjectURL(url);
+        pausePlayBtn.disabled = true;
+        pausePlayBtn.textContent = 'Pause Playback';
+        status.textContent = 'Playback finished.';
+      };
+      window._currentAudio = audio;
+      audio.play();
+      pausePlayBtn.disabled = false;
+      pausePlayBtn.textContent = 'Pause Playback';
+      status.textContent = 'Playing...';
+    };
+
+    pausePlayBtn.onclick = () => {
+      const a = window._currentAudio;
+      if (a) {
+        a.paused ? a.play() : a.pause();
+        pausePlayBtn.textContent = a.paused ? 'Resume' : 'Pause Playback';
+      }
+    };
+
+    function blobToArrayBuffer(blob) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = reject;
+        r.readAsArrayBuffer(blob);
+      });
+    }
+
+    async function getWavBlob(webmBlob) {
+      const arrayBuffer = await blobToArrayBuffer(webmBlob);
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const decoded = await audioContext.decodeAudioData(arrayBuffer);
+      const left = decoded.getChannelData(0);
+      const sampleRate = decoded.sampleRate;
+      const buffer = new ArrayBuffer(44 + left.length * 2);
+      const view = new DataView(buffer);
+      const write = (offset, value) => view.setUint32(offset, value, true);
+      const write16 = (offset, value) => view.setUint16(offset, value, true);
+
+      const writeString = (offset, str) => {
+        for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+      };
+      writeString(0, 'RIFF');
+      write(4, 36 + left.length * 2);
+      writeString(8, 'WAVE');
+      writeString(12, 'fmt ');
+      write(16, 16);
+      write16(20, 1);
+      write16(22, 1);
+      write(24, sampleRate);
+      write(28, sampleRate * 2);
+      write16(32, 2);
+      write16(34, 16);
+      writeString(36, 'data');
+      write(40, left.length * 2);
+      const offset = 44;
+      for (let i = 0; i < left.length; i++) {
+        const s = Math.max(-1, Math.min(1, left[i]));
+        view.setInt16(offset + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      }
+      return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    downloadBtn.onclick = async () => {
+      hideDownloadError();
+
+      const rawName = getStudentName();
+      if (!rawName) {
+        downloadError.textContent = CLASS_ROSTERS[studentClassSelect.value]
+          ? 'Please select your name before downloading.'
+          : 'Please enter your name before downloading.';
+        downloadError.classList.add('visible');
+        return;
+      }
+
+      const cls = studentClassSelect.value;
+      if (!cls) {
+        downloadError.textContent = 'Please select your class before downloading.';
+        downloadError.classList.add('visible');
+        return;
+      }
+
+      const namePart = sanitizeFilenamePart(rawName) || 'Student';
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const filename = `${namePart}-${cls}-${TASK_FILENAME}-${dateStr}.wav`;
+
+      const blob = await getWavBlob(audioBlob);
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+  </script>
+</body>
+</html>
